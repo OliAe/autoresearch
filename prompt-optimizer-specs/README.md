@@ -234,6 +234,8 @@ max_tokens: 50
 | Config files | YAML | Human-readable, good for prompts |
 | Data files | JSONL | One record per line, easy to append |
 | Terminal output | Rich | Tables, progress bars, colors |
+| Web UI | FastAPI + Jinja2 + htmx | Lightweight, no JS build step |
+| Deployment | Railway + Docker | PaaS with persistent volumes |
 | Testing | pytest + pytest-asyncio | Standard, async-compatible |
 | Linting | Ruff | Fast, comprehensive |
 
@@ -252,7 +254,9 @@ These tickets should be built **in order** — each one builds on the previous:
 | 5 | [Judge](ticket-5-judge.md) | Scoring engine (hard checks + LLM grader) | Outputs can be scored against expected |
 | 6 | [Optimizer](ticket-6-optimizer.md) | Failure analysis + proposal engine | System can propose improvements |
 | 7 | [Controller](ticket-7-controller.md) | Main loop orchestration | Full optimization loop runs end-to-end |
-| 8 | [CLI & Reporting](ticket-8-cli-and-reporting.md) | User-facing commands, reports, export | Complete user experience |
+| 8 | [CLI & Reporting](ticket-8-cli-and-reporting.md) | User-facing commands, reports, export | Complete CLI experience |
+| 9 | [Web UI](ticket-9-web-ui.md) | Browser-based dataset management | Easy input/output entry via forms |
+| 10 | [Railway Deployment](ticket-10-railway-deployment.md) | Dockerfile, Railway config, volumes | Hosted production deployment |
 
 ---
 
@@ -264,8 +268,6 @@ These are explicitly out of scope:
 - **Routing between models per-input** — Deferred to v2
 - **Multi-provider support (OpenAI, etc.)** — Anthropic only for v1
 - **Fine-tuning integration** — Deferred to v3
-- **Production deployment pipeline** — Deferred to v3
-- **Web UI** — CLI only for now
 - **RAG / retrieval as an optimization knob** — Deferred to v2
 - **Automatic example generation** — Users provide all examples manually
 
@@ -278,3 +280,5 @@ These are explicitly out of scope:
 - Cost of the optimization run is trackable and bounded
 - The winning config is exportable as a standalone YAML that any developer can use directly
 - The entire system can be installed and run with 4 commands: clone, sync, configure API key, run
+- The system deploys to Railway with a single `railway up`, with persistent storage for datasets and runs
+- The web UI allows non-technical users to add and manage eval examples without touching the CLI
